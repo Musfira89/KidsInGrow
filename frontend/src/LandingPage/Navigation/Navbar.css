@@ -1,0 +1,63 @@
+/* Navbar container styling */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, #f8b400, #fceabb); /* Light orange to light yellow gradient */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+}
+
+/* Navbar link styling */
+.navbar-link {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+/* Button styling */
+.nav-button {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-button:hover {
+  transform: scale(1.05);
+}
+
+/* Specific button color styles */
+.nav-button.bg-white {
+  background-color: #ffffff;
+}
+
+.nav-button.text-orange-600 {
+  color: #f8b400;
+}
+
+.nav-button.border-orange-600 {
+  border-color: #f8b400;
+}
+
+.nav-button.bg-white.text-yellow-500 {
+  color: #fceabb;
+}
+
+.nav-button.border-yellow-500 {
+  border-color: #fceabb;
+}
