@@ -95,7 +95,7 @@ const Sidebar = ({ childId, userId }) => {
             }}
           />
         </ListItem>
-        <ListItem button component={Link} to={`/dashboard/profilepage/profilepage/${childId}`}>
+        <ListItem button component={Link} to={`/dashboard/activity/activity/${childId}`}>
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
             <SchoolIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
           </ListItemIcon>
