@@ -4,7 +4,7 @@ import { saveResponse , getResponses , getCategoryFeedback} from '../Controllers
 const router = express.Router();
 
 router.post('/responses', saveResponse);
-router.get('/responses/:childId', getResponses);
+router.get('/responses/:childId/:month', getResponses);
 router.get('/feedback/:childId/:categoryId', getCategoryFeedback);
 
 

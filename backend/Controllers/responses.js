@@ -17,17 +17,17 @@ export const saveResponse = async (req, res) => {
 
 
 export const getResponses = async (req, res) => {
-  const { childId } = req.params;
+  const { childId, month } = req.params; // Get both childId and month from params
 
   const query = `
     SELECT r.question_id, q.category_id, r.option_marks
     FROM responses r
     JOIN questions q ON r.question_id = q.question_id
-    WHERE r.child_id = ?
+    WHERE r.child_id = ? AND r.month = ?
   `;
 
   try {
-    const [results] = await dbPromise.query(query, [childId]);
+    const [results] = await dbPromise.query(query, [childId, month]);
 
     const categoryTotals = results.reduce((acc, response) => {
       const { category_id, option_marks } = response;
@@ -41,6 +41,7 @@ export const getResponses = async (req, res) => {
     res.status(500).send('Error fetching responses');
   }
 };
+
 
 export const getCategoryFeedback = async (req, res) => {
   const { childId, categoryId } = req.params;

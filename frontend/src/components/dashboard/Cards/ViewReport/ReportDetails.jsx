@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ReportDetails = ({ totalScores, setShowReportDetails }) => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-transparent mt-14"> 
       <div className="bg-gray-50 shadow-md rounded-lg p-8 relative max-w-4xl w-full">
         {/* Header Section */}
         <div className="flex justify-between items-center border-b pb-2 mb-4">
@@ -27,8 +27,7 @@ const ReportDetails = ({ totalScores, setShowReportDetails }) => {
           <div>
             <h4 className="text-base font-medium text-blue-800">Summary</h4>
             <p className="text-sm text-gray-700">
-              This report provides an overview of the performance metrics
-              evaluated.
+              This report provides an overview of the performance metrics evaluated.
             </p>
           </div>
           <div className="text-right">

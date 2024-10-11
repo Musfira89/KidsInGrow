@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom"; // import useNavigate
 import axios from "axios";
 import logo from "../../../../assets/logo.png";
 import bgImage from "../../../../assets/kidsbg.jpg";
@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ChildReport = () => {
   const { childId } = useParams();
+  const navigate = useNavigate(); // useNavigate hook to programmatically navigate
   const yearMonths = {
     1: [
       { month: 2 },
@@ -77,6 +78,11 @@ const ChildReport = () => {
     }
   };
 
+  const handleViewReport = (month) => {
+    // Navigate to the new route for viewing the report
+    navigate(`/view-report/${childId}/${month}`);
+  };
+
   return (
     <div
       className="min-h-screen bg-fixed bg-cover bg-center bg-gray-300"
@@ -110,14 +116,20 @@ const ChildReport = () => {
                     className="bg-white rounded-lg p-2 w-60 ml-10 border-r-orange-500 border-r-8 border-x-orange-500"
                   >
                     <button
-                      onClick={() => handleDownloadPdfReport(month)}
+                      onClick={() => handleViewReport(month)}
                       className="bg-white text-black font-semibold py-2 px-4 rounded-lg w-full flex items-center justify-between"
                     >
                       <div className="flex flex-col items-center">
                         <span className="text-lg font-bold">Month {month}</span>
                         <hr className="border-t-2 w-full mt-2 mb-2" />
                       </div>
-                      <DownloadIcon className="text-blue-950" />
+                      <DownloadIcon
+                        className="text-blue-950"
+                        onClick={(e) => {
+                          e.stopPropagation(); // prevent view navigation on download click
+                          handleDownloadPdfReport(month);
+                        }}
+                      />
                     </button>
                   </div>
                 ))}

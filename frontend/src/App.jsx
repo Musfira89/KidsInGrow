@@ -23,6 +23,7 @@ import ActivityDetails from './pages/Dashboard/Activity/Activitydetails';
 import ActivityCard from './pages/Dashboard/Activity/ActivityCard';
 import Activity from './pages/Dashboard/Activity/Activity';
 import ActivityRoutes from './pages/Dashboard/Activity/ActivityRoutes';
+import MonthReport from './components/dashboard/Cards/ViewReport/MonthReport';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
             <Route path="/choosemonth/:childId" element={<ChooseMonth />} />
             <Route path="/dashboard/:childId/month/:month/category/:category" element={<Questions />} />
             <Route path="/view-report/:childId" element={<Report />} />
+            <Route path="/view-report/:childId/:month" element={<MonthReport />} />
 
             {/* Admin Dashboard Routes */}
             <Route path="/admin" element={<AdminLogin />} />
