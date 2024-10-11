@@ -1,13 +1,13 @@
-// controllers/responseController.js
+// controllers/response.js
 import { dbPromise } from '../connect.js';
 
 export const saveResponse = async (req, res) => {
-  const { child_id, question_id, option_marks } = req.body;
+  const { child_id, question_id, option_marks, month } = req.body;
 
-  const query = 'INSERT INTO responses (child_id, question_id, option_marks) VALUES (?, ?, ?)';
+  const query = 'INSERT INTO responses (child_id, question_id, option_marks, month) VALUES (?, ?, ?, ?)';
 
   try {
-    await dbPromise.query(query, [child_id, question_id, option_marks]);
+    await dbPromise.query(query, [child_id, question_id, option_marks,month]);
     res.status(201).send('Response saved successfully');
   } catch (err) {
     console.error('Error saving response:', err);

@@ -141,8 +141,9 @@ function MonthQuestions() {
       child_id: childId,
       question_id: questionId,
       option_marks: optionMarks,
+      month: month, // Include the selected month
     };
-
+  
     try {
       await axios.post('http://localhost:8080/api/responses', response);
       setUserResponses((prevResponses) => ({
@@ -156,6 +157,7 @@ function MonthQuestions() {
       setShowFeedback(true);
     }
   };
+  
 
   const handleSubmit = async () => {
     const allQuestionsAnswered = questions.every(

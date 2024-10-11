@@ -1,4 +1,4 @@
-// controllers/questionController.js
+// controllers/question.js
 import { dbPromise } from '../connect.js';
 
 export const getQuestions = async (req, res) => {

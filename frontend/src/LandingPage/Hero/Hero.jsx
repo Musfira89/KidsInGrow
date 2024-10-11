@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, Button, Container, Typography, Grid } from '@mui/material';
-import Navbar from '../Navigation/Navbar';
 import Choose from "../../assets/Profile.png";
 import './HeroSection.css';
 

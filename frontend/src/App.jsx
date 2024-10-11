@@ -64,7 +64,7 @@ function App() {
             <Route path="/admin-panel" element={<AdminPanel />} />
 
             {/* Pages Dashboard Routes */}
-            <Route path="/analytics" element={<ProgressTracking />} />
+            <Route path="/progress-tracking/:childId" element={<ProgressTracking />} />
             <Route path="/help" element={<Help />} />
 
             <Route path="/view-activities" element={<Activity buttonLabels={buttonLabels} />} />

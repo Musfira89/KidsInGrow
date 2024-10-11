@@ -14,6 +14,7 @@ import profileRoutes from './routes/profileRoutes.js';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import  progressTrackingRoutes  from './routes/trackingRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -73,6 +74,7 @@ app.use('/api', reportRoutes);
 app.use('/api', graphRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api', profileRoutes);
+app.use('/api', progressTrackingRoutes);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

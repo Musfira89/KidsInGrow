@@ -12,18 +12,32 @@ export const fetchGraphData = async (req, res) => {
       return res.status(404).json({ error: 'Child data not found' });
     }
 
-    // Fetch category-wise total marks from the reports table
+    // Fetch the maximum month from the responses table for this child
+    const maxMonthQuery = `
+      SELECT MAX(q.month) as latest_month
+      FROM responses r
+      JOIN questions q ON r.question_id = q.question_id
+      WHERE r.child_id = ?
+    `;
+    const [latestMonthResult] = await dbPromise.query(maxMonthQuery, [childId]);
+    const latestMonth = latestMonthResult[0]?.latest_month;
+
+    if (!latestMonth) {
+      return res.status(404).json({ error: 'No response data found for this child' });
+    }
+
+    // Fetch category-wise total marks for the child, filtered by the latest month
     const responseQuery = `
       SELECT q.category_id, SUM(r.option_marks) as total_marks
       FROM responses r
       JOIN questions q ON r.question_id = q.question_id
-      WHERE r.child_id = ?
+      WHERE r.child_id = ? AND q.month = ?
       GROUP BY q.category_id
     `;
-    const [responseData] = await dbPromise.query(responseQuery, [childId]);
+    const [responseData] = await dbPromise.query(responseQuery, [childId, latestMonth]);
 
     if (!responseData.length) {
-      return res.status(404).json({ error: 'No response data found for the given child' });
+      return res.status(404).json({ error: 'No response data found for the latest month and child' });
     }
 
     const categories = [
@@ -40,8 +54,8 @@ export const fetchGraphData = async (req, res) => {
       totalMarks: responseData.find(response => response.category_id - 1 === index)?.total_marks || 0
     }));
 
-    // Send the result as a response
-    res.status(200).json({ graphData });
+    // Send the result along with the latest month
+    res.status(200).json({ graphData, latestMonth });
   } catch (error) {
     console.error('Error fetching graph data:', error);
     res.status(500).json({ error: 'Internal server error' });

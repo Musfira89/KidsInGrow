@@ -25,7 +25,7 @@ const cardData = (childId) => [
     title: 'Progress Tracking',
     icon: <FaChartBar className="text-orange-400 text-3xl" />,
     borderColor: 'border-orange-400',
-    link: '/analytics',
+    link: `/progress-tracking/${childId}`,
   },
 ];
 

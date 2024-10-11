@@ -5,10 +5,8 @@ import Home from './pages/Dashboard/Home';
 import Settings from './pages/Dashboard/Settings';
 import ProgressTracking from './pages/Dashboard/ProgressTracking';
 import Help from './pages/Dashboard/Help';
-
 import ProfilePage from "./pages/Dashboard/ProfilePage";
 import ActivityRoutes from "./pages/Dashboard/Activity/ActivityRoutes";
-// import Questions from "./components/dashboard/cards/Assessment/Questions";
 
 const AppRoutes = () => (
   <Routes>

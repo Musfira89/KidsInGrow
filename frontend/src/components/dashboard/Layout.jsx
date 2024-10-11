@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CustomSidebar from './Sidebar';
 import { Outlet, useParams } from 'react-router-dom';
 import Cards from './TopCard';
+import Topbar from './Topbar';
 
 const Layout = () => {
   const { childId } = useParams(); // Get childId from URL parameters
@@ -26,7 +27,7 @@ const Layout = () => {
           transition: 'margin-left 0.3s',
         }}
       >
-        {/* <Topbar toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} /> Pass function to toggle sidebar */}
+        <Topbar/>
         <div className="flex-1 p-4 bg-gray-100 overflow-y-auto"> {/* Main content area */}
           <div className="relative w-full h-full">
             <Outlet />

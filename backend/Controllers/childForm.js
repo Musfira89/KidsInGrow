@@ -1,4 +1,4 @@
-// controllers/childController.js
+// controllers/childForm.js
 import { dbPromise } from '../connect.js';
 
 export const submitChildForm = async (req, res) => {
