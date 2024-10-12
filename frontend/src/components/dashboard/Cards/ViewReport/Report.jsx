@@ -50,7 +50,7 @@ const ChildReport = () => {
   const handleDownloadPdfReport = async (month) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/reports/pdf/${childId}/${month}`,
+        `http://localhost:8082/api/reports/pdf/${childId}/${month}`,
         {
           responseType: "arraybuffer",
         }

@@ -42,7 +42,7 @@ const ChildForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/submit', formData);
+            const response = await axios.post('http://localhost:8082/api/submit', formData);
             const { child_id } = response.data;
             setProfile(response.data);  // Save the profile data in the context
             toast.success('Child information saved successfully!');

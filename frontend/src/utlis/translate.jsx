@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const translateText = async (text, targetLang) => {
   try {
-    const response = await axios.post('http://localhost:8080/api/translate', {
+    const response = await axios.post('http://localhost:8082/api/translate', {
       text,
       targetLang
     });

@@ -16,7 +16,7 @@ const ProgressTracking = () => {
   useEffect(() => {
     const fetchProgressData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/progress-tracking/${childId}`);
+        const response = await axios.get(`http://localhost:8082/api/progress-tracking/${childId}`);
         if (response.data && response.data.groupedData) {
           setGraphData(response.data.groupedData);
           const fetchedMonths = Object.keys(response.data.groupedData);

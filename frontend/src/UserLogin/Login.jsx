@@ -35,7 +35,7 @@ const Login = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        const response = await axios.post('http://localhost:8080/api/auth/login', values);
+        const response = await axios.post('http://localhost:8082/api/auth/login', values);
         console.log('Login response:', response.data);
         setUser(response.data.user); // Assuming response.data contains the user info
         

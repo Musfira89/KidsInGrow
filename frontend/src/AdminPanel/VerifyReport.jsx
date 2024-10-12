@@ -11,7 +11,7 @@ const VerifyReport = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/reports/metadata');
+        const response = await axios.get('http://localhost:8082/api/reports/metadata');
         setReports(response.data);
       } catch (error) {
         setError('Error fetching reports');
@@ -24,7 +24,7 @@ const VerifyReport = () => {
 
   const handleViewReport = async (reportId) => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/reports/pdf/${reportId}`, {
+      const response = await axios.get(`http://localhost:8082/api/reports/pdf/${reportId}`, {
         responseType: 'arraybuffer'
       });
 
@@ -40,7 +40,7 @@ const VerifyReport = () => {
 
   const handleApproveReport = async (id) => {
     try {
-      await axios.post(`http://localhost:8080/api/reports/approve/${id}`);
+      await axios.post(`http://localhost:/api/reports/approve/${id}`);
       setReports(reports.map(r => (r.report_id === id ? { ...r, status: 'Approved' } : r)));
       toast.success("Report Approve Successfully")
     } catch (error) {
@@ -51,7 +51,7 @@ const VerifyReport = () => {
 
   const handleDeclineReport = async (id) => {
     try {
-      await axios.post(`http://localhost:8080/api/reports/decline/${id}`);
+      await axios.post(`http://localhost:8082/api/reports/decline/${id}`);
       setReports(reports.map(r => (r.report_id === id ? { ...r, status: 'Declined' } : r)));
     } catch (error) {
       console.error('Error declining report:', error);

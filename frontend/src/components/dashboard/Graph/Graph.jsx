@@ -14,7 +14,7 @@ const Graph = () => {
   useEffect(() => {
     const fetchGraphData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/graph-data/${childId}`);
+        const response = await axios.get(`http://localhost:8082/api/graph-data/${childId}`);
         if (response.data && response.data.graphData) {
           setGraphData(response.data.graphData);
           setLatestMonth(response.data.latestMonth); // Set the latest month

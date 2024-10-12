@@ -24,7 +24,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchChildData = async () => {
       try {
-        const childResponse = await fetch(`http://localhost:8080/api/${childId}`);
+        const childResponse = await fetch(`http://localhost:8082/api/${childId}`);
         if (!childResponse.ok) throw new Error(`Failed to fetch child data: ${childResponse.statusText}`);
         const childData = await childResponse.json();
         setChildData(childData);
@@ -38,7 +38,7 @@ const ProfilePage = () => {
 
     const fetchProfilePic = async () => {
       try {
-        const picResponse = await fetch(`http://localhost:8080/api/profile-pic/${childId}`);
+        const picResponse = await fetch(`http://localhost:8082/api/profile-pic/${childId}`);
         if (!picResponse.ok) throw new Error(`Failed to fetch profile picture: ${picResponse.statusText}`);
         const picData = await picResponse.json();
         setProfilePic(picData.profilePicUrl);
@@ -77,7 +77,7 @@ const ProfilePage = () => {
     formData.append('profilePic', selectedFile);
 
     try {
-      const uploadResponse = await fetch(`http://localhost:8080/api/upload-profile-pic/${childId}`, {
+      const uploadResponse = await fetch(`http://localhost:8082/api/upload-profile-pic/${childId}`, {
         method: 'POST',
         body: formData,
       });
@@ -104,7 +104,7 @@ const ProfilePage = () => {
   
     try {
       // Perform the update request
-      const updateResponse = await fetch(`http://localhost:8080/api/update-profile-pic/${childId}`, {
+      const updateResponse = await fetch(`http://localhost:8082/api/update-profile-pic/${childId}`, {
         method: 'POST',
         body: formData,
       });
@@ -137,7 +137,7 @@ const ProfilePage = () => {
 
   const handleProfilePicDelete = async () => {
     try {
-      const deleteResponse = await fetch(`http://localhost:8080/api/delete-profile-pic/${childId}`, {
+      const deleteResponse = await fetch(`http://localhost:8082/api/delete-profile-pic/${childId}`, {
         method: 'DELETE',
       });
   

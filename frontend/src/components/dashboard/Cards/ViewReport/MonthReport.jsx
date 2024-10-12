@@ -31,7 +31,7 @@ const MonthlyReport = () => {
 
       try {
         const childResponse = await fetch(
-          `http://localhost:8080/api/${childId}`
+          `http://localhost:8082/api/${childId}`
         );
         if (!childResponse.ok)
           throw new Error(`HTTP error! Status: ${childResponse.status}`);
@@ -39,7 +39,7 @@ const MonthlyReport = () => {
         setChildData(childData);
 
         const responsesResponse = await fetch(
-            `http://localhost:8080/api/responses/${childId}/${month}`
+            `http://localhost:8082/api/responses/${childId}/${month}`
           );
           if (!responsesResponse.ok)
             throw new Error(`HTTP error! Status: ${responsesResponse.status}`);
@@ -78,7 +78,7 @@ const MonthlyReport = () => {
   const handleDownloadPdfReport = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/reports/pdf/${childId}`,
+        `http://localhost:8082/api/reports/pdf/${childId}`,
         {
           responseType: "arraybuffer",
         }

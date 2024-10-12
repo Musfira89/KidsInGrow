@@ -29,7 +29,7 @@ const AddQuestion = () => {
     event.preventDefault();
     try {
       // Send form data to backend for processing
-      await axios.post('http://localhost:8080/api/questions/add', formData); // Update URL
+      await axios.post('http://localhost:8082/api/questions/add', formData); // Update URL
       // Reset form data
       setFormData({
         month: '',

@@ -41,14 +41,14 @@ function MonthQuestions() {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/months/${month}/categories/${currentCategory}/questions`
+          `http://localhost:8082/api/months/${month}/categories/${currentCategory}/questions`
         );
         const questionsData = response.data;
 
         const questionsWithOptions = await Promise.all(
           questionsData.map(async (question) => {
             const optionsResponse = await axios.get(
-              `http://localhost:8080/api/questions/${question.question_id}/options`
+              `http://localhost:8082/api/questions/${question.question_id}/options`
             );
             return { ...question, options: optionsResponse.data };
           })
@@ -93,7 +93,7 @@ function MonthQuestions() {
 
     try {
       // Fetch category feedback
-      const feedbackResponse = await axios.get(`http://localhost:8080/api/feedback/${childId}/${currentCategory}`);
+      const feedbackResponse = await axios.get(`http://localhost:8082/api/feedback/${childId}/${currentCategory}`);
       const { feedback } = feedbackResponse.data;
 
       if (allYes) {
@@ -145,7 +145,7 @@ function MonthQuestions() {
     };
   
     try {
-      await axios.post('http://localhost:8080/api/responses', response);
+      await axios.post('http://localhost:8082/api/responses', response);
       setUserResponses((prevResponses) => ({
         ...prevResponses,
         [questionId]: optionMarks,
@@ -172,7 +172,7 @@ function MonthQuestions() {
     }
 
     try {
-      await axios.post(`http://localhost:8080/api/generate-report`, {
+      await axios.post(`http://localhost:8082/api/generate-report`, {
         childId,
         month,
       });

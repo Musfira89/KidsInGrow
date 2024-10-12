@@ -28,12 +28,12 @@ const ProfileCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const childResponse = await fetch(`http://localhost:8080/api/${childId}`);
+        const childResponse = await fetch(`http://localhost:8082/api/${childId}`);
         if (!childResponse.ok) throw new Error(`Failed to fetch child data: ${childResponse.statusText}`);
         const childData = await childResponse.json();
         setChildData(childData);
 
-        const picResponse = await fetch(`http://localhost:8080/api/profile-pic/${childId}`);
+        const picResponse = await fetch(`http://localhost:8082/api/profile-pic/${childId}`);
         if (!picResponse.ok) throw new Error(`Failed to fetch profile picture: ${picResponse.statusText}`);
         const picData = await picResponse.json();
         setProfilePic(picData.profilePicUrl);

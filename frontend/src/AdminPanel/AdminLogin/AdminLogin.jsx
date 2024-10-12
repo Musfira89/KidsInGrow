@@ -17,7 +17,7 @@ const AdminLogin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/Adminlogin', values);
+      const response = await axios.post('http://localhost:8082/api/auth/Adminlogin', values);
       if (response.data.isAdmin) {
         alert('User Successfully Logged In');
         navigate('/admin-panel');

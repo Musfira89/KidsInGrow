@@ -15,7 +15,7 @@ const AdminPanel = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/logout', {}, { withCredentials: true });
+      const response = await axios.post('http://localhost:8082/api/auth/logout', {}, { withCredentials: true });
       console.log(response.data.message); // Handle success
       toast.success('Logged out successfully'); // Show success toast
       navigate('/admin');
