@@ -18,12 +18,9 @@ import AppRoutes from './routes';
 import AdminLogin from './AdminPanel/AdminLogin/AdminLogin';
 import Help from './pages/Dashboard/Help';
 import ProgressTracking from './pages/Dashboard/ProgressTracking';
-import ActivityList from './pages/Dashboard/Activity/ActivityList';
-import ActivityDetails from './pages/Dashboard/Activity/Activitydetails';
-import ActivityCard from './pages/Dashboard/Activity/ActivityCard';
-import Activity from './pages/Dashboard/Activity/Activity';
-import ActivityRoutes from './pages/Dashboard/Activity/ActivityRoutes';
+
 import MonthReport from './components/dashboard/Cards/ViewReport/MonthReport';
+import UpdateActivity from './pages/Dashboard/UpdateActivity';
 
 
 function App() {
@@ -68,12 +65,7 @@ function App() {
             {/* Pages Dashboard Routes */}
             <Route path="/progress-tracking/:childId" element={<ProgressTracking />} />
             <Route path="/help" element={<Help />} />
-
-            <Route path="/view-activities" element={<Activity buttonLabels={buttonLabels} />} />
-            <Route path="/*" element={<ActivityRoutes buttonLabels={buttonLabels} />} />
-            <Route path="/" element={<ActivityList buttonLabels={buttonLabels} />} />
-            <Route path="/activity/:ageRange" element={<ActivityDetails />} />
-            <Route path="/activity/:ageRange/:activityId" element={<ActivityCard />} />
+            <Route path="activity/:childId" element={<UpdateActivity />} />
           </Routes>
           <ToastContainer />
         </Router>

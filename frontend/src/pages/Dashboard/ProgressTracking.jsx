@@ -135,12 +135,12 @@ const ProgressTracking = () => {
           {/* Increased paragraph font size */}
         </div>
 
+                {/* Progress Tracking */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {months.length > 0 ? (
             months.map((month, index) => (
               <div key={index} className="mb-8 w-full">
                 <h3 className="text-xl font-semibold text-gray-700 text-center mb-2">{`Month ${month} Progress`}</h3>{" "}
-                {/* Consistent heading style */}
                 <div className="h-80">
                   <Bar
                     data={{
