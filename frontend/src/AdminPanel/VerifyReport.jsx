@@ -40,7 +40,7 @@ const VerifyReport = () => {
 
   const handleApproveReport = async (id) => {
     try {
-      await axios.post(`http://localhost:/api/reports/approve/${id}`);
+      await axios.post(`http://localhost:8082/api/reports/approve/${id}`);
       setReports(reports.map(r => (r.report_id === id ? { ...r, status: 'Approved' } : r)));
       toast.success("Report Approve Successfully")
     } catch (error) {

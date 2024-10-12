@@ -1,10 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
-import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom'; // Added `useNavigate` for navigation
+import React, { useEffect, useState } from "react";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom"; // Added `useNavigate` for navigation
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 const ProgressTracking = () => {
   const { childId } = useParams();
@@ -16,7 +31,9 @@ const ProgressTracking = () => {
   useEffect(() => {
     const fetchProgressData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8082/api/progress-tracking/${childId}`);
+        const response = await axios.get(
+          `http://localhost:8082/api/progress-tracking/${childId}`
+        );
         if (response.data && response.data.groupedData) {
           setGraphData(response.data.groupedData);
           const fetchedMonths = Object.keys(response.data.groupedData);
@@ -24,22 +41,30 @@ const ProgressTracking = () => {
 
           // Comparing the last two filled months
           if (fetchedMonths.length >= 2) {
-            const secondLastMonthData = response.data.groupedData[fetchedMonths[fetchedMonths.length - 2]];
-            const lastMonthData = response.data.groupedData[fetchedMonths[fetchedMonths.length - 1]];
+            const secondLastMonthData =
+              response.data.groupedData[
+                fetchedMonths[fetchedMonths.length - 2]
+              ];
+            const lastMonthData =
+              response.data.groupedData[
+                fetchedMonths[fetchedMonths.length - 1]
+              ];
 
-            const comparison = Object.keys(secondLastMonthData).map((skill, index) => ({
-              skill,
-              secondLastMonth: secondLastMonthData[skill],
-              lastMonth: lastMonthData[skill],
-              improvement: lastMonthData[skill] - secondLastMonthData[skill],
-              color: getColorByIndex(index), // Get vibrant colors for each skill
-            }));
+            const comparison = Object.keys(secondLastMonthData).map(
+              (skill, index) => ({
+                skill,
+                secondLastMonth: secondLastMonthData[skill],
+                lastMonth: lastMonthData[skill],
+                improvement: lastMonthData[skill] - secondLastMonthData[skill],
+                color: getColorByIndex(index), // Get vibrant colors for each skill
+              })
+            );
 
             setComparisonData(comparison);
           }
         }
       } catch (error) {
-        console.error('Error fetching progress data:', error);
+        console.error("Error fetching progress data:", error);
       }
     };
 
@@ -48,7 +73,14 @@ const ProgressTracking = () => {
 
   // Function to generate light aesthetic colors based on the index
   const getColorByIndex = (index) => {
-    const colors = ['#FFB6C1', '#ADD8E6', '#90EE90', '#FFD700', '#FF6347', '#AFEEEE']; // Soft pastel colors
+    const colors = [
+      "#FFB6C1",
+      "#ADD8E6",
+      "#90EE90",
+      "#FFD700",
+      "#FF6347",
+      "#AFEEEE",
+    ]; // Soft pastel colors
     return colors[index % colors.length];
   };
 
@@ -56,23 +88,23 @@ const ProgressTracking = () => {
     plugins: {
       legend: {
         display: true,
-        position: 'bottom'
+        position: "bottom",
       },
       tooltip: {
         callbacks: {
           label: function (tooltipItem) {
             return `Progress: ${tooltipItem.raw}%`;
-          }
-        }
-      }
+          },
+        },
+      },
     },
     responsive: true,
     maintainAspectRatio: false,
     scales: {
       x: { display: false },
-      y: { beginAtZero: true, max: 100 }
+      y: { beginAtZero: true, max: 100 },
     },
-    barThickness: 50
+    barThickness: 50,
   };
 
   // Navigation handler for the activities page
@@ -85,21 +117,30 @@ const ProgressTracking = () => {
       <header className="bg-gradient-to-r from-orange-400 to-red-400 text-white p-16 sm:p-12 rounded-lg shadow-lg mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between">
         <div className="flex flex-col justify-center text-center sm:text-left">
           <p className="text-lg">WELCOME!</p>
-          <h1 className="text-4xl sm:text-4xl font-bold tracking-wide">CHILD Monthly Progress Tracking</h1>
+          <h1 className="text-4xl sm:text-4xl font-bold tracking-wide">
+            CHILD Monthly Progress Tracking
+          </h1>
         </div>
       </header>
 
       <main className="p-4 sm:p-6 mx-auto max-w-6xl">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mt-8">Progress Tracking Overview</h2> {/* Increased heading font size */}
-          <p className="text-base text-gray-700">Compare your child's progress across months.</p> {/* Increased paragraph font size */}
+          <h2 className="text-2xl font-bold text-gray-800 mt-8">
+            Progress Tracking Overview
+          </h2>{" "}
+          {/* Increased heading font size */}
+          <p className="text-base text-gray-700">
+            Compare your child's progress across months.
+          </p>{" "}
+          {/* Increased paragraph font size */}
         </div>
 
-        <div className="flex justify-around mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {months.length > 0 ? (
             months.map((month, index) => (
-              <div key={index} className="mb-8 w-[45%]">
-                <h3 className="text-xl font-semibold text-gray-700 text-center mb-2">{`Month ${month} Progress`}</h3> {/* Consistent heading style */}
+              <div key={index} className="mb-8 w-full">
+                <h3 className="text-xl font-semibold text-gray-700 text-center mb-2">{`Month ${month} Progress`}</h3>{" "}
+                {/* Consistent heading style */}
                 <div className="h-80">
                   <Bar
                     data={{
@@ -108,9 +149,9 @@ const ProgressTracking = () => {
                         {
                           label: `Month ${month} Progress`,
                           data: Object.values(graphData[month]),
-                          backgroundColor: 'rgba(255, 99, 132, 0.5)', // Pink bar color
-                        }
-                      ]
+                          backgroundColor: "rgba(255, 99, 132, 0.5)", // Pink bar color
+                        },
+                      ],
                     }}
                     options={chartOptions}
                   />
@@ -125,14 +166,23 @@ const ProgressTracking = () => {
         {/* Progress Comparison */}
         {comparisonData.length > 0 && (
           <div className="mt-8 p-6 bg-white rounded-lg shadow-lg border border-gray-200">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Progress Comparison</h3> {/* Consistent heading style */}
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              Progress Comparison
+            </h3>{" "}
+            {/* Consistent heading style */}
             <p className="text-base text-gray-700 mb-4">
-              Comparing progress between Month {months[months.length - 2]} and Month {months[months.length - 1]}.
+              Comparing progress between Month {months[months.length - 2]} and
+              Month {months[months.length - 1]}.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {comparisonData.map((data, index) => (
-                <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-inner">
-                  <h4 className="text-md font-semibold text-gray-700">{data.skill}</h4>
+                <div
+                  key={index}
+                  className="p-4 bg-gray-50 rounded-lg shadow-inner"
+                >
+                  <h4 className="text-md font-semibold text-gray-700">
+                    {data.skill}
+                  </h4>
                   <div className="flex items-center mt-2">
                     <div
                       className="w-2/3 h-4 rounded-full"
@@ -153,8 +203,8 @@ const ProgressTracking = () => {
             </div>
           </div>
         )}
-          {/* Updated Additional Elements for Parents */}
-          <div className="mt-12 p-6 bg-gradient-to-r from-purple-100 to-purple-200 rounded-lg shadow-lg">
+        {/* Updated Additional Elements for Parents */}
+        <div className="mt-12 p-6 bg-gradient-to-r from-purple-100 to-purple-200 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold text-gray-800 mb-6">
             Tips for Parents
           </h2>
