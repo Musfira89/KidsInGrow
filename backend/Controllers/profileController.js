@@ -42,7 +42,7 @@ export const submitProfilePic = async (req, res) => {
 
     try {
         await dbPromise.query(sql, values);
-        res.status(201).json({ message: 'Profile picture uploaded successfully', profilePicUrl: `http://localhost:8080/uploads/${profilePic}` });
+        res.status(201).json({ message: 'Profile picture uploaded successfully', profilePicUrl: `http://localhost:8082/uploads/${profilePic}` });
     } catch (err) {
         console.error('Error uploading profile picture:', err);
         res.status(500).json({ error: 'Internal server error' });
@@ -61,7 +61,7 @@ export const getProfilePic = async (req, res) => {
             return res.status(404).json({ error: 'Profile picture not found' });
         }
 
-        const profilePicUrl = `http://localhost:8080/uploads/${results[0].profilePic}`;
+        const profilePicUrl = `http://localhost:8082/uploads/${results[0].profilePic}`;
 
         res.status(200).json({ profilePicUrl });
     } catch (err) {
@@ -96,7 +96,7 @@ export const updateProfilePic = async (req, res) => {
             }
         }
 
-        res.status(200).json({ message: 'Profile picture updated successfully', profilePicUrl: `http://localhost:8080/uploads/${newProfilePic}` });
+        res.status(200).json({ message: 'Profile picture updated successfully', profilePicUrl: `http://localhost:8082/uploads/${newProfilePic}` });
     } catch (err) {
         console.error('Error updating profile picture:', err);
         res.status(500).json({ error: 'Internal server error' });
