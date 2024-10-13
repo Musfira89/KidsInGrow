@@ -38,7 +38,7 @@ const Login = () => {
         const response = await axios.post('http://localhost:8082/api/auth/login', values);
         console.log('Login response:', response.data);
         setUser(response.data.user); // Assuming response.data contains the user info
-        
+        localStorage.setItem('username', response.data.user.username); // Add this line
         const { child_id } = response.data;
 
         if (child_id) {

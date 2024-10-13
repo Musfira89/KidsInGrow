@@ -1,10 +1,16 @@
-// Dashboard.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import profile from '../../assets/bg.png';
 
 const Dashboard = () => {
-  // Fetch the username from local storage or state
-  const username = localStorage.getItem('username');
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    // Fetch the username from localStorage
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []); // Runs only once when the component mounts
 
   return (
     <div className="bg-gradient-to-r from-blue-950 to-white text-white rounded-2xl p-6 flex items-center justify-between shadow-lg mb-6" style={{ minHeight: '200px', width: '100%' }}>
@@ -15,7 +21,7 @@ const Dashboard = () => {
           Welcome back! Here’s what you can do today. Start by reviewing your reports or exploring new activities.
         </p>
       </div>
-      
+
       {/* Image on the right side */}
       <div className="flex-shrink-0 ml-6">
         <img
