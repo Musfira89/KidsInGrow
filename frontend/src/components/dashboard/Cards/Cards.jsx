@@ -19,13 +19,13 @@ const cardData = (childId) => [
     title: 'View Activities',
     icon: <FaTasks className="text-yellow-300 text-3xl" />,
     borderColor: 'border-yellow-300',
-    link: `/activity/${childId}`,
+    link: `/dashboard/activity/activity/${childId}`,
   },
   {
     title: 'Progress Tracking',
     icon: <FaChartBar className="text-orange-400 text-3xl" />,
     borderColor: 'border-orange-400',
-    link: `/progress-tracking/${childId}`,
+    link: `/dashboard/progress-tracking/progress-tracking/${childId}`,
   },
 ];
 

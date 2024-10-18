@@ -36,7 +36,7 @@ const Activity = () => {
       <div className="relative z-10">
         <h2 className="text-2xl lg:text-5xl font-bold mb-6 text-center text-gray-800">
           ACTIVITY
-          <span className="text-blue-500"> CARDS</span>
+          <span className="text-blue-900"> CARDS</span>
         </h2>
         <p className="text-gray-600 mb-8 text-center text-lg">
           Explore a variety of engaging activities to support your child's
@@ -62,7 +62,7 @@ const Activity = () => {
             <div className="w-full text-center mt-5">
               <button
                 onClick={handleViewLess}
-                className="bg-yellow-400 text-white font-bold py-4 px-12 rounded-full hover:bg-yellow-500 transition duration-300 ease-in-out"
+                className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold py-4 px-12 rounded-full hover:bg-yellow-500 transition duration-300 ease-in-out"
               >
                 View Less
               </button>
@@ -71,7 +71,7 @@ const Activity = () => {
             <div className="w-full text-center mt-5">
               <button
                 onClick={handleViewMore}
-                className="bg-yellow-400 text-white font-bold py-4 px-12 rounded-full hover:bg-yellow-500 transition duration-300 ease-in-out"
+                className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold py-4 px-12 rounded-full hover:bg-yellow-500 transition duration-300 ease-in-out"
               >
                 View More
               </button>

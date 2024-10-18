@@ -62,7 +62,7 @@ const UpdateActivity = () => {
     <div className="min-h-screen w-[90%] bg-white p-4 sm:p-6 ml-20">
 
       {/* Header Section */}
-      <header className="bg-gradient-to-r from-orange-400 to-red-400 text-white p-16 sm:p-12 rounded-lg shadow-lg mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between">
+      <header className="bg-gradient-to-r bg-blue-950  text-white p-16 sm:p-12 rounded-lg shadow-lg mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between">
         <div className="flex flex-col justify-center text-center sm:text-left">
           <p className="text-lg">WELCOME!</p>
           <h1 className="text-4xl sm:text-4xl font-bold tracking-wide">Child Suggested Activities</h1>

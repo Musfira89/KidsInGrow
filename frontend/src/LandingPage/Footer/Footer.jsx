@@ -6,13 +6,9 @@ import Qrcode from "../../assets/Qrcode.png";
 const Footer = () => {
   return (
     <div className="relative px-4 py-8">
-      {/* Blue border at the top of the footer */}
+      {/* navy blue border at the top of the footer */}
       <motion.div
-        className="absolute top-0 left-0 right-0 h-16"
-        style={{
-          background:
-            "linear-gradient(to right, #4EABD9, #53AFE7, transparent)",
-        }}
+        className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-r from-blue-950 to-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -37,7 +33,7 @@ const Footer = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h1 className="text-blue-400 font-bold text-3xl">Navigations</h1>
+          <h1 className="text-blue-900 font-bold text-3xl">Navigations</h1>
           <ul className="text-lg text-gray-700 flex flex-col gap-4">
             <li>Home</li>
             <li>Services</li>
@@ -53,7 +49,7 @@ const Footer = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h1 className="text-blue-400 font-bold text-3xl">Services</h1>
+          <h1 className="text-blue-900 font-bold text-3xl">Services</h1>
           <ul className="text-lg text-gray-700 flex flex-col gap-4">
             <li>Self Assessment</li>
             <li>Location Suggestions</li>
@@ -70,11 +66,17 @@ const Footer = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <h1 className="text-blue-400 font-bold text-3xl">Helpline</h1>
+          <h1 className="text-blue-900 font-bold text-3xl">Helpline</h1>
           <ul className="text-gray-700 flex flex-col gap-4">
             <li>+92-308-2220203 (WhatsApp)</li>
-            <h1 className="text-blue-400 font-bold text-3xl">QR Code</h1>
-            <img src={Qrcode} alt="QR Code" width={100} height={100} className="rounded-lg shadow-md" />
+            <h1 className="text-blue-900 font-bold text-3xl">QR Code</h1>
+            <img
+              src={Qrcode}
+              alt="QR Code"
+              width={100}
+              height={100}
+              className="rounded-lg shadow-md"
+            />
           </ul>
         </motion.div>
       </div>

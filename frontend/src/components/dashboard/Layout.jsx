@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CustomSidebar from './Sidebar';
 import { Outlet, useParams } from 'react-router-dom';
-import Cards from './TopCard';
 import Topbar from './Topbar';
 
 const Layout = () => {

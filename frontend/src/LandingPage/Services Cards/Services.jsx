@@ -1,6 +1,5 @@
 import React from "react";
 import serviceData from "./constant";
-import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -21,7 +20,7 @@ const Services = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#f5f5f5", // Light grey background
+        backgroundColor: "#f5f5f5",
         py: 8,
         mb: 12,
       }}
@@ -34,10 +33,9 @@ const Services = () => {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            sx={{ fontWeight: "bold" }}
+            sx={{ fontWeight: "bold", color: "#1f2937 " }} // Change heading color
           >
-            OUR{" "}
-            <span style={{ color: theme.palette.primary.main }}>SERVICES</span>
+            OUR <span style={{ color: "#1e3a8a"  }}>SERVICES</span>
           </Typography>
           <Typography
             variant="body1"
@@ -78,14 +76,14 @@ const ServiceCard = ({ service, index }) => {
       controls.start({
         opacity: 1,
         y: 0,
-        transition: { type: "spring", stiffness: 100, delay: index * 0.2 ,duration: 2 }, // Add delay for bubble-like effect
+        transition: { type: "spring", stiffness: 100, delay: index * 0.2, duration: 2 }, // Add delay for bubble-like effect
       });
     }
   }, [controls, inView, index]);
 
   let borderColor = "";
   if (index === 0 || index === 2 || index === 5) {
-    borderColor = "#42a5f5"; // Blue color
+    borderColor = "#1e3a8a"; // Blue color
   } else {
     borderColor = "#ffa726"; // Orange color
   }
@@ -129,7 +127,7 @@ const ServiceCard = ({ service, index }) => {
             variant="h6"
             gutterBottom
             align="center"
-            sx={{ color: "primary.main", fontWeight: "bold" }}
+            sx={{ color: "#1e3a8a", fontWeight: "bold" }} // Change card title color
           >
             {title}
           </Typography>
