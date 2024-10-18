@@ -75,7 +75,7 @@ const Faq = () => {
           transition={{ duration: 0.9 }}
         >
           Frequently Asked
-          <span className="text-blue-500"> Questions</span>
+          <span className="text-blue-900"> Questions</span>
         </motion.h2>
         <motion.p
           className="text-gray-600 mb-8 text-center text-lg"

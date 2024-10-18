@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../../assets/logo.png";
 import { toast } from "react-toastify";
-import { Box, Typography, List, ListItem, ListItemIcon, ListItemText, Button, Divider } from "@mui/material";
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Button,
+  Divider,
+} from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import SchoolIcon from "@mui/icons-material/School";
 import BookIcon from "@mui/icons-material/Book";
@@ -10,7 +19,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ childId, userId }) => {
@@ -19,11 +28,12 @@ const Sidebar = ({ childId, userId }) => {
 
   useEffect(() => {
     // Fetch username from backend using userId
-    axios.get(`/api/auth/userInfo/${userId}`)
-      .then(response => {
-        setUsername(response.data.username || "User Name"); 
+    axios
+      .get(`/api/auth/userInfo/${userId}`)
+      .then((response) => {
+        setUsername(response.data.username || "User Name");
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching user info:", error);
       });
   }, [userId]);
@@ -74,7 +84,7 @@ const Sidebar = ({ childId, userId }) => {
             display: { xs: "none", sm: "block" }, // Hide on extra small screens
             fontSize: { sm: 18, md: 24 },
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           Kids InGrow
@@ -85,7 +95,9 @@ const Sidebar = ({ childId, userId }) => {
       <List component="nav">
         <ListItem button component={Link} to={`/dashboard/${childId}`}>
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
-            <DashboardIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
+            <DashboardIcon
+              sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
+            />
           </ListItemIcon>
           <ListItemText
             primary="Dashboard"
@@ -95,7 +107,11 @@ const Sidebar = ({ childId, userId }) => {
             }}
           />
         </ListItem>
-        <ListItem button component={Link} to={`/dashboard/activity/activity/${childId}`}>
+        <ListItem
+          button
+          component={Link}
+          to={`/dashboard/activity/activity/${childId}`}
+        >
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
             <SchoolIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
           </ListItemIcon>
@@ -107,7 +123,11 @@ const Sidebar = ({ childId, userId }) => {
             }}
           />
         </ListItem>
-        <ListItem button component={Link} to={`/dashboard/progress-tracking/progress-tracking/${childId}`}>
+        <ListItem
+          button
+          component={Link}
+          to={`/dashboard/progress-tracking/progress-tracking/${childId}`}
+        >
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
             <BookIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
           </ListItemIcon>
@@ -119,9 +139,15 @@ const Sidebar = ({ childId, userId }) => {
             }}
           />
         </ListItem>
-        <ListItem button component={Link} to={`/dashboard/profilepage/profilepage/${childId}`}>
+        <ListItem
+          button
+          component={Link}
+          to={`/dashboard/profilepage/profilepage/${childId}`}
+        >
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
-            <ReceiptIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
+            <ReceiptIcon
+              sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
+            />
           </ListItemIcon>
           <ListItemText
             primary="Child-Profile"
@@ -131,31 +157,30 @@ const Sidebar = ({ childId, userId }) => {
             }}
           />
         </ListItem>
-
         {/* Preferences Section */}
-        <Divider sx={{ my: 2, backgroundColor: "white" }} /> {/* Divider line */}
+        <Divider sx={{ my: 2, backgroundColor: "white" }} />{" "}
+        {/* Divider line */}
         <Typography
           variant="caption"
           color="white"
-          sx={{ marginLeft: 2, marginTop: 2, display: { xs: "none", sm: "block" } }}
+          sx={{
+            marginLeft: 2,
+            marginTop: 2,
+            display: { xs: "none", sm: "block" },
+          }}
         >
           More Items
         </Typography>
-        <ListItem button component={Link} to={`/dashboard/settings/settings/${childId}`}>
+
+        <ListItem
+          button
+          component={Link}
+          to={`/dashboard/help/help/${childId}`}
+        >
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
-            <SettingsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
-          </ListItemIcon>
-          <ListItemText
-            primary="Settings"
-            primaryTypographyProps={{
-              color: "white",
-              sx: { display: { xs: "none", sm: "block" } }, // Hide text on extra small screens
-            }}
-          />
-        </ListItem>
-        <ListItem button component={Link} to={`/dashboard/help/help/${childId}`}>
-          <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
-            <HelpOutlineIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
+            <HelpOutlineIcon
+              sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
+            />
           </ListItemIcon>
           <ListItemText
             primary="Help"
@@ -168,31 +193,17 @@ const Sidebar = ({ childId, userId }) => {
       </List>
 
       {/* Logout Button */}
-      <Box
-        sx={{
-          marginTop: "auto",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Button
-          variant="contained"
-          color="secondary"
-          startIcon={<ExitToAppIcon sx={{ fontSize: 20 }} />}
-          sx={{
-            backgroundColor: "#FF9100",
-            padding: { xs: 0.8, sm: 1.4 },
-            borderRadius: 4,
-            color: "white",
-            width: { xs: "50%", sm: "70%" },
-            textTransform: "none",
-            fontSize: { xs: 12, sm: 16 },
-          }}
-          onClick={handleLogout} // Add click handler
+      <div className="mt-auto flex justify-center">
+        <button
+          className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-[10px] px-4 rounded-lg text-sm sm:text-base w-1/2 sm:w-3/4"
+          onClick={handleLogout}
         >
+          <span className="mr-2">
+            <ExitToAppIcon className="text-white" style={{ fontSize: 20 }} />
+          </span>
           Log Out
-        </Button>
-      </Box>
+        </button>
+      </div>
     </Box>
   );
 };

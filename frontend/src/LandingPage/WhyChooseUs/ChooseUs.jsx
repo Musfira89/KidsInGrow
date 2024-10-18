@@ -24,14 +24,14 @@ const ChooseUs = () => {
   ];
 
   return (
-    <div className="relative pb-24 pt-12 px-4 md:px-8 lg:px-16 bg-gradient-to-r from-blue-100 via-white to-white">
+    <div className="relative pb-24 pt-12 px-4 md:px-8 lg:px-16 bg-gradient-to-r via-white to-white">
       <motion.h2
         className="text-2xl lg:text-5xl font-bold mb-6 text-center text-gray-800"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Why <span className="text-blue-500">Choose Us</span>
+        Why <span className="text-blue-900">Choose Us</span>
       </motion.h2>
       <motion.p
         className="text-gray-600 mb-8 text-center text-lg"
@@ -56,7 +56,7 @@ const ChooseUs = () => {
                 }}
                 transition={{ duration: 0.6, delay: index * 0.3 }} // Adjust delay for drop effect
               >
-                <BsSquare className="text-blue-500 border-blue-400 border-solid border-4 mr-3 p-1" />
+                <BsSquare className="text-blue-900 border-blue-900 border-solid border-4 mr-3 p-1" />
                 {text}
               </motion.li>
             ))}
