@@ -64,7 +64,7 @@ const HeroSection = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  KIDSINGROW
+                  KIDS INGROW
                 </Box>
               </Typography>
               <Typography

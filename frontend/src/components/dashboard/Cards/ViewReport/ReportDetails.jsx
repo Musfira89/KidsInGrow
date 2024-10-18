@@ -8,7 +8,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const ReportDetails = ({ totalScores, setShowReportDetails }) => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-transparent mt-14"> 
-      <div className="bg-gray-50 shadow-md rounded-lg p-8 relative max-w-4xl w-full">
+      <div className="bg-gray-50 shadow-md rounded-lg p-8 relative max-w-7xl w-full ml-96">
         {/* Header Section */}
         <div className="flex justify-between items-center border-b pb-2 mb-4">
           <h3 className="text-2xl font-semibold text-blue-900">
