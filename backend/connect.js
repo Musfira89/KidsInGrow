@@ -2,7 +2,7 @@ import mysql from 'mysql2';
 
 export const db = mysql.createConnection({
     host: "localhost",
-    port: 3306, 
+    port: 4036, 
     user: "root",
     password: "", // Add your MySQL password here
     database: "kidsingrow"
