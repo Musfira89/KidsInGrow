@@ -103,6 +103,7 @@ const HeroSection = () => {
                 >
                   VIEW DEMO
                 </button>
+               
 
                 {/* Video Modal */}
                 {isOpen && (

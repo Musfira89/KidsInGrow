@@ -59,7 +59,7 @@ const ChildForm = () => {
                 <div className="grid grid-cols-1 gap-0 max-w-lg w-full">
                     <div className="flex flex-col justify-center items-center relative z-10">
                         <div className="bg-white shadow-md rounded-lg p-10 w-[150%] mb-10 mt-5">
-                            <div className="bg-cyan-500 rounded-t-lg p-4 pt-10 text-white text-center font-bold mb-4 font-serif text-3xl mtb-10">
+                            <div className="bg-blue-900 rounded-t-lg p-4 pt-10 text-white text-center font-bold mb-4 font-serif text-3xl mtb-10">
                                 <h1 className='mb-2'>Child Form</h1>
                             </div>
                             <form onSubmit={handleSubmit}>
@@ -90,7 +90,6 @@ const ChildForm = () => {
                                             type="text"
                                             autoComplete="name"
                                             placeholder="Enter Baby Middle Name"
-                                            required
                                             value={formData.middleName}
                                             onChange={handleChange}
                                             className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"
@@ -105,7 +104,6 @@ const ChildForm = () => {
                                             type="text"
                                             autoComplete="name"
                                             placeholder="Enter Baby Last Name"
-                                            required
                                             value={formData.babyLastName}
                                             onChange={handleChange}
                                             className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"

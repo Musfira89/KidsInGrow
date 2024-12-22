@@ -65,7 +65,7 @@ const Login = () => {
         <div className="grid grid-cols-1 gap-0 max-w-lg w-full">
           <div className="flex flex-col justify-center items-center relative z-10 md:pb-20 pt-40">
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded md:px-10 md:pt-10">
-              <h2 className="text-3xl font-bold mb-4 text-center text-cyan-500 pb-15">Login</h2>
+              <h2 className="text-3xl font-bold mb-4 text-center text-blue-900 pb-15">Login</h2>
               <div className="mb-4">
                 <label htmlFor="username" className="block text-black-700 text-sm font-bold mb-2">
                   Username
@@ -103,7 +103,7 @@ const Login = () => {
               {errorText && <div className="text-red-500 text-xs mb-4">{errorText}</div>}
               <div className="flex items-center justify-center md:mt-5">
                 <button
-                  className="hover:bg-blue-800 text-white md:w-[100%] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-gradient-to-bl from-cyan-400 to-blue-500"
+                  className="hover:bg-blue-800 text-white md:w-[100%] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-gradient-to-bl from-cyan-400 to-blue-900"
                   type="submit"
                 >
                   Login
@@ -112,7 +112,7 @@ const Login = () => {
               <div>
                 <p className="text-center text-gray-600 md:pb-10">
                   Don't have an account?{' '}
-                  <Link to="/signup" className="text-cyan-500 hover:underline">
+                  <Link to="/signup" className="text-blue-900 hover:underline">
                     Register
                   </Link>
                 </p>

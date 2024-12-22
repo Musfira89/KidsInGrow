@@ -23,6 +23,7 @@ import MonthReport from './components/dashboard/Cards/ViewReport/MonthReport';
 import UpdateActivity from './pages/Dashboard/UpdateActivity';
 
 
+
 function App() {
   const buttonLabels = [
     '1-4 Months',
@@ -50,6 +51,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/childform" element={<ChildForm />} />
+           
 
             {/* User Dashboard Routes */}
             <Route path="/dashboard/:childId/*" element={<AppRoutes />} />
