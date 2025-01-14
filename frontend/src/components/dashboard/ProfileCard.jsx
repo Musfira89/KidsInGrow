@@ -19,7 +19,7 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; // Import the icon
 
 const ProfileCard = () => {
-  const { childId } = useParams();
+  const { childId ,parentId } = useParams();
   const navigate = useNavigate();
   const [childData, setChildData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +48,7 @@ const ProfileCard = () => {
   }, [childId]);
 
   const handleViewMore = () => {
-    navigate(`/dashboard/profilepage/profilepage/${childId}`);
+    navigate(`/dashboard/${parentId}/${childId}/profilepage`);
   };
 
   const formatDate = (dateStr) => {

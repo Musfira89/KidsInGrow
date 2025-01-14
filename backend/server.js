@@ -11,6 +11,8 @@ import graphRoutes from './routes/graphRoutes.js';
 import questionRoutes from './routes/questionRoutes.js';
 import dotenv from 'dotenv';
 import profileRoutes from './routes/profileRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
+
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -75,6 +77,7 @@ app.use('/api', graphRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api', profileRoutes);
 app.use('/api', progressTrackingRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 const PORT = process.env.PORT || 8082;
 app.listen(PORT, () => {

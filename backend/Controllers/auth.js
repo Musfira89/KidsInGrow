@@ -54,29 +54,30 @@ export const login = async (req, res) => {
     }
 
     const user = results[0];
-    
+    const parent_id = user.id; // assuming `id` in `signup` table is the parent ID
     
     // Compare password
     const match = await bcrypt.compare(password, user.password);
-    console.log('Password Match:', match);
-
     if (!match) {
       return res.status(400).json({ error: "Invalid password" });
     }
 
-    // Check for existing child profile
-    const childProfileSql = "SELECT child_id FROM child_form WHERE parentName = ?";
-    const [childProfileResults] = await dbPromise.query(childProfileSql, [username]);
+    // Check for existing child profile(s)
+    const childProfileSql = "SELECT child_id FROM child_form WHERE parent_id = ?";
+    const [childProfileResults] = await dbPromise.query(childProfileSql, [parent_id]);
 
+    // Determine if any child profiles exist
     const child_id = childProfileResults.length > 0 ? childProfileResults[0].child_id : null;
 
-    // Respond with user info and child_id if exists
-    res.status(200).json({ user: user, child_id: child_id });
+    // Respond with user info, parent_id, and child_id if it exists
+    res.status(200).json({ user: user, parent_id: parent_id, child_id: child_id });
   } catch (error) {
     console.error('Error in login:', error);
     res.status(500).json({ error: "Internal server error" });
   }
-}
+};
+
+
 
 export const Adminlogin = async (req, res) => {
   const { username, password } = req.body;

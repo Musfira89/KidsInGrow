@@ -21,23 +21,10 @@ import ProgressTracking from './pages/Dashboard/ProgressTracking';
 
 import MonthReport from './components/dashboard/Cards/ViewReport/MonthReport';
 import UpdateActivity from './pages/Dashboard/UpdateActivity';
+import ChildPage from './UserLogin/ChildPage';
 
 
 function App() {
-  const buttonLabels = [
-    '1-4 Months',
-    '4-8 Months',
-    '8-12 Months',
-    '12-16 Months',
-    '16-20 Months',
-    '20-24 Months',
-    '24-30 Months',
-    '30-36 Months',
-    '36-48 Months',
-    '48-60 Months',
-    '60-66 Months',
-    '66-78 Months'
-  ];
 
   return (
     <AuthProvider>
@@ -50,22 +37,24 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/childform" element={<ChildForm />} />
+            <Route path="/chooseChild/:parentId" element={<ChildPage />} /> {/* already added to this new route */}
 
             {/* User Dashboard Routes */}
-            <Route path="/dashboard/:childId/*" element={<AppRoutes />} />
-            <Route path="/choosemonth/:childId" element={<ChooseMonth />} />
-            <Route path="/dashboard/:childId/month/:month/category/:category" element={<Questions />} />
-            <Route path="/view-report/:childId" element={<Report />} />
-            <Route path="/view-report/:childId/:month" element={<MonthReport />} />
+            <Route path="/dashboard/:parentId/:childId/*" element={<AppRoutes />} />
+            <Route path="/choosemonth/:parentId/:childId" element={<ChooseMonth />} />
+            <Route path="/dashboard/:parentId/:childId/month/:month/category/:category" element={<Questions />} />
+            <Route path="/view-report/:parentId/:childId" element={<Report />} />
+            <Route path="/view-report/:parentId/:childId/:month" element={<MonthReport />} />
+
 
             {/* Admin Dashboard Routes */}
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin-panel" element={<AdminPanel />} />
 
             {/* Pages Dashboard Routes */}
-            <Route path="/progress-tracking/:childId" element={<ProgressTracking />} />
+            <Route path="/progress-tracking/:parentId/:childId" element={<ProgressTracking />} />
             <Route path="/help" element={<Help />} />
-            <Route path="activity/:childId" element={<UpdateActivity />} />
+            <Route path="activity/:parentId/:childId" element={<UpdateActivity />} />
           </Routes>
           <ToastContainer />
         </Router>

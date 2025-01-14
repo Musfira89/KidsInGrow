@@ -7,15 +7,14 @@ import Bot from '../../components/dashboard/ChatBot/Bot';
 import Dashboard from '../../components/dashboard/TopCard';
 
 const Home = () => {
-  const { childId } = useParams(); // Get childId from URL
+  const { parentId, childId } = useParams(); // Get parentId and childId from URL
 
   return (
     <div className="flex flex-col lg:flex-row gap-4 mt-6 px-4 lg:px-8 h-full">
       {/* Flexbox for stacking vertically on small screens, horizontally on larger screens */}
-      
       <div className="flex-1 lg:flex-[1] flex flex-col gap-6 ml-8">
         <Dashboard username="Your Name" /> {/* Greeting Card */}
-        <Cards childId={childId} /> {/* Cards at the top */}
+        <Cards parentId={parentId} childId={childId} /> {/* Pass both parentId and childId */}
         <Graph /> {/* Graph directly beneath the cards */}
       </div>
       
@@ -26,7 +25,6 @@ const Home = () => {
       </div>
       <Bot />
     </div>
-    
   );
 };
 

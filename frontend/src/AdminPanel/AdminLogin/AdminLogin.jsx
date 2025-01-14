@@ -32,7 +32,7 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen flex items-center justify-center "style={{ backgroundImage: `url(${BgImage})` }}>
       <div className="w-full max-w-md p-8 space-y-8 bg-white shadow-md rounded">
-        <h2 className="text-3xl font-bold text-center text-blue-600">Admin Login</h2>
+        <h2 className="text-3xl font-bold text-center text-blue-900">Admin Login</h2>
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
@@ -62,7 +62,7 @@ const AdminLogin = () => {
           <div>
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded hover:bg-blue-700"
+              className="w-full py-2 px-4 bg-blue-900 text-white font-bold rounded hover:bg-blue-700"
             >
               Login
             </button>
