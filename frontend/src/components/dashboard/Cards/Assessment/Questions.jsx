@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import backgroundImage from '../../../../assets/bgquest.jpg';
 import Confetti from 'react-confetti';
-
+import AnimatedStars from './AnimatedStars';
 
 
 // Bind modal to your appElement for accessibility reasons
@@ -120,7 +120,7 @@ function MonthQuestions() {
         }
         setShowFeedback(false); // Hide feedback modal after proceeding
         setConfetti(false);
-      }, 3000); // Adjust delay as needed
+      }, 4000); // Adjust delay as needed
     } catch (error) {
       console.error('Error fetching feedback:', error);
       setFeedbackMessage('Error fetching feedback');
@@ -335,7 +335,7 @@ function MonthQuestions() {
           overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
         >
           <div className="relative bg-white p-8 rounded-lg text-center">
-          {feedbackType === 'info'}
+          {feedbackType === 'info' && <AnimatedStars />}
           <div
             className={`bg-white p-6 rounded-lg shadow-lg text-center ${feedbackType === 'success'
                 ? 'bg-green-100'

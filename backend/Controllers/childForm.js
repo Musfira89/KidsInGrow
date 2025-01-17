@@ -57,7 +57,7 @@ export const getChildrenByParent = async (req, res) => {
     const { parentId } = req.params; // Get parentId from request parameters
   
     try {
-        const query = 'SELECT child_id, babyName, babyLastName, dob, assistingPeople FROM child_form WHERE parent_id = ?';
+        const query = 'SELECT child_id, babyName, babyLastName, dob, parentName, assistingPeople FROM child_form WHERE parent_id = ?';
         const [children] = await dbPromise.query(query, [parentId]); 
   
         // Check if any children were found

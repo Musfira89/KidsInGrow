@@ -17,7 +17,6 @@ import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import  progressTrackingRoutes  from './routes/trackingRoutes.js';
-import notificationRoutes from './routes/notificationRoutes.js';
 
 dotenv.config();
 const app = express();

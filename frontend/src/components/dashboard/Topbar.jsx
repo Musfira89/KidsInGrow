@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate , useParams} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -14,15 +14,15 @@ import {
   useTheme,
   Box,
   CircularProgress,
-} from '@mui/material';
-import { HiBell, HiUser, HiCog, HiLogout, HiOutlineBell } from 'react-icons/hi';
-import axios from 'axios';
+} from "@mui/material";
+import axios from "axios";
+import { HiBell, HiUser, HiCog, HiLogout, HiOutlineBell } from "react-icons/hi";
 
 const Topbar = () => {
   const { childId } = useParams();
-  const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const [anchorElNotifications, setAnchorElNotifications] = useState(null);
   const [anchorElProfile, setAnchorElProfile] = useState(null);
   const theme = useTheme();
@@ -56,33 +56,6 @@ const Topbar = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const fetchNotifications = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8082/api/notifications/${childId}`);
-  
-      if (response.data.error) {
-        setNotifications([{ message: response.data.error, date: new Date().toLocaleString() }]);
-      } else {
-        setNotifications(response.data);
-      }
-    } catch (error) {
-      console.error('Error fetching notifications:', error);
-      setNotifications([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  
-
-  useEffect(() => {
-    fetchNotifications();
-
-    // Optional: Poll for new notifications every 10 seconds
-    const interval = setInterval(fetchNotifications, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const handleLogout = () => {
     navigate("/");
   };
@@ -100,13 +73,14 @@ const Topbar = () => {
           variant="h6"
           sx={{
             flexGrow: 1,
-            color: 'text.primary',
-            maxWidth: '200px',
-            marginLeft: '40px',
-            fontWeight: 'Bold',
-            fontSize: '25px',
+            color: "text.primary",
+            maxWidth: "200px",
+            marginLeft: "40px",
+            fontWeight: "Bold",
+            fontSize: "25px",
           }}
         >
+          {" "}
           Dashboard
         </Typography>
 
@@ -135,9 +109,9 @@ const Topbar = () => {
             onClose={() => setAnchorElNotifications(null)}
             PaperProps={{
               sx: {
-                width: '350px',
-                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-                borderRadius: '10px',
+                width: "350px",
+                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                borderRadius: "10px",
               },
             }}
           >
@@ -145,20 +119,19 @@ const Topbar = () => {
               variant="h6"
               sx={{
                 p: 2,
-                bgcolor: 'orange',
-                color: 'white',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                borderTopLeftRadius: '10px',
-                borderTopRightRadius: '10px',
+                bgcolor: "orange",
+                color: "white",
+                textAlign: "center",
+                fontWeight: "bold",
+                borderTopLeftRadius: "10px",
+                borderTopRightRadius: "10px",
               }}
             >
               Notifications
             </Typography>
             <Divider />
-
             {!isLoading && notifications.length === 0 ? (
-              <MenuItem disabled sx={{ py: 3, justifyContent: 'center' }}>
+              <MenuItem disabled sx={{ py: 3, justifyContent: "center" }}>
                 <Typography variant="body1" color="textSecondary">
                   No report status updates
                 </Typography>
@@ -166,9 +139,9 @@ const Topbar = () => {
             ) : isLoading ? (
               <Box
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
                   py: 3,
                 }}
               >
@@ -179,7 +152,9 @@ const Topbar = () => {
                 <MenuItem key={notification.id} sx={{ py: 1.5 }}>
                   <HiOutlineBell size={20} />
                   <Box sx={{ ml: 2 }}>
-                    <Typography variant="body2">{notification.message}</Typography>
+                    <Typography variant="body2">
+                      {notification.message}
+                    </Typography>
                     <Typography variant="caption" color="textSecondary">
                       {notification.date}
                     </Typography>
@@ -204,9 +179,9 @@ const Topbar = () => {
             onClose={() => setAnchorElProfile(null)}
             PaperProps={{
               sx: {
-                width: '220px',
-                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-                borderRadius: '10px',
+                width: "220px",
+                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                borderRadius: "10px",
               },
             }}
           >
@@ -214,12 +189,12 @@ const Topbar = () => {
               variant="h6"
               sx={{
                 p: 2,
-                bgcolor: 'orange',
-                color: 'white',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                borderTopLeftRadius: '10px',
-                borderTopRightRadius: '10px',
+                bgcolor: "orange",
+                color: "white",
+                textAlign: "center",
+                fontWeight: "bold",
+                borderTopLeftRadius: "10px",
+                borderTopRightRadius: "10px",
               }}
             >
               Profile

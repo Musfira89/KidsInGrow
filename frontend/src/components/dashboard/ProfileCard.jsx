@@ -177,7 +177,7 @@ const ProfileCard = () => {
               <PersonIcon fontSize="small" sx={{ color: "black" }} />
             </Box>
           </ListItemIcon>
-          <ListItemText primary={`User Name: ${childData.parentName}`} />
+          <ListItemText primary={`Parent Name: ${childData.parentName}`} />
         </ListItem>
 
         <ListItem>

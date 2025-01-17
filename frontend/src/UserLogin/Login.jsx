@@ -10,7 +10,8 @@ import { ValidationSchema } from '../Validations/validationSchema';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  // const { setUser } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const formik = useFormik({
     initialValues: {
@@ -21,15 +22,11 @@ const Login = () => {
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
         const response = await axios.post('http://localhost:8082/api/auth/login', values);
-        setUser(response.data.user);
-        localStorage.setItem('username', response.data.user.username);
-        const { child_id } = response.data;
+        const { user, parent_id, child_id } = response.data;
 
-        if (child_id) {
-          navigate(`/dashboard/${child_id}`);
-        } else {
-          navigate('/childform');
-        }
+        login(user, parent_id);
+
+        // Show success toast
         toast.success('Login successful!');
 
         // Delay navigation by 1 second
@@ -48,6 +45,7 @@ const Login = () => {
       }
     },
   });
+  
 
   return (
     <div className="relative min-h-screen bg-cover bg-center">
@@ -56,7 +54,7 @@ const Login = () => {
         <div className="grid grid-cols-1 gap-0 max-w-lg w-full">
           <div className="flex flex-col justify-center items-center relative z-10 md:pb-20 pt-40">
             <form onSubmit={formik.handleSubmit} className="bg-white shadow-md rounded md:px-10 md:pt-10">
-              <h2 className="text-3xl font-bold mb-4 text-center text-cyan-500 pb-15">Login</h2>
+              <h2 className="text-3xl font-bold mb-4 text-center text-blue-900 pb-15">Login</h2>
 
               <div className="mb-4">
                 <label htmlFor="username" className="block text-black-700 text-sm font-bold mb-2">

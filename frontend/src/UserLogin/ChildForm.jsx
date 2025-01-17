@@ -12,6 +12,7 @@ const ChildForm = () => {
     const navigate = useNavigate();
     const { authData } = useContext(AuthContext); // Get authData from AuthContext
     const { setProfile } = useContext(ProfileContext); // Ensure this context is set up correctly
+    const [error, setError] = useState('');
 
     const [formData, setFormData] = useState({
         babyName: '',
@@ -33,11 +34,31 @@ const ChildForm = () => {
     });
 
     const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        if (name === 'dob') {
+            const today = new Date();
+            const selectedDate = new Date(value);
+            const minDate = new Date();
+            const maxDate = new Date();
+
+            // Set the range for 1 to 5 years
+            minDate.setFullYear(today.getFullYear() - 5);
+            maxDate.setFullYear(today.getFullYear() - 1);
+
+            if (selectedDate < minDate || selectedDate > maxDate) {
+                setError('Please select a date of birth within 1 to 5 years from today.');
+            } else {
+                setError('');
+            }
+        }
+
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value,
         });
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -63,10 +84,12 @@ const ChildForm = () => {
     };
 
 
-      
+
+
+
     return (
         <div className="relative min-h-screen bg-cover bg-center">
-            <div className="absolute inset-0 opacity-50 bg-cover bg-center"style={{ backgroundImage: `url(${BgImage})` }}></div>
+            <div className="absolute inset-0 opacity-50 bg-cover bg-center" style={{ backgroundImage: `url(${BgImage})` }}></div>
             <div className="flex justify-center items-center min-h-fit bg-slate-100">
                 <div className="grid grid-cols-1 gap-0 max-w-lg w-full">
                     <div className="flex flex-col justify-center items-center relative z-10">
@@ -102,6 +125,7 @@ const ChildForm = () => {
                                             type="text"
                                             autoComplete="name"
                                             placeholder="Enter Baby Middle Name"
+                                            required
                                             value={formData.middleName}
                                             onChange={handleChange}
                                             className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"
@@ -116,6 +140,7 @@ const ChildForm = () => {
                                             type="text"
                                             autoComplete="name"
                                             placeholder="Enter Baby Last Name"
+                                            required
                                             value={formData.babyLastName}
                                             onChange={handleChange}
                                             className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"
@@ -136,6 +161,7 @@ const ChildForm = () => {
                                         onChange={handleChange}
                                         className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-cyan-500 focus:border-cyan-500"
                                     />
+                                    {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
                                 </div>
                                 {/* Baby's Gender */}
                                 <div className="mb-4">
@@ -209,7 +235,7 @@ const ChildForm = () => {
                                     {/* Other Relationship */}
                                     <div className="mt-4 ">
                                         <label htmlFor="otherRelationship" className="block text-sm font-medium text-gray-700 mb-1">Other:</label>
-                                        <input type="text" id="otherRelationship" name="otherRelationship"   className="mt-1 block w-full  shadow-sm  focus:ring-opacity-50 p-1 border border-gray-300 rounded-md" value={formData.otherRelationship}
+                                        <input type="text" id="otherRelationship" name="otherRelationship" className="mt-1 block w-full  shadow-sm  focus:ring-opacity-50 p-1 border border-gray-300 rounded-md" value={formData.otherRelationship}
                                             onChange={handleChange} />
                                     </div>
                                 </div>

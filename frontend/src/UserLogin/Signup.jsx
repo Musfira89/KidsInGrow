@@ -51,7 +51,7 @@ const Register = () => {
               onSubmit={formik.handleSubmit}
               className="bg-white shadow-md rounded md:px-10 md:pt-10"
             >
-              <h2 className="text-3xl font-bold mb-4 text-center text-cyan-500 pb-15">
+              <h2 className="text-3xl font-bold mb-4 text-center text-blue-900 pb-15">
                 SignUp
               </h2>
 
@@ -126,7 +126,7 @@ const Register = () => {
               <div>
                 <p className="text-center text-gray-600 md:pb-10">
                   Already have an account?{" "}
-                  <Link to="/login" className="text-cyan-500 hover:underline">
+                  <Link to="/login" className="text-blue-900 hover:underline">
                     Login
                   </Link>
                 </p>
