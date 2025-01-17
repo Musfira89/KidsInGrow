@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import backgroundImage from '../../../../assets/kidsbg.jpg';
 function ChooseMonth() {
-  const { childId } = useParams();
+  const { childId , parentId} = useParams();
 
   const yearMonths = {
     1: [
@@ -75,7 +75,7 @@ function ChooseMonth() {
                   return (
                     <div key={month} className="bg-white rounded-lg p-2 w-60 ml-10 border-r-orange-500 border-r-8 border-x-orange-500">
                       <Link
-                        to={`/dashboard/${childId}/month/${month}/category/1`}
+                        to={`/dashboard/${parentId}/${childId}/month/${month}/category/1`}
                       >
                         <button
                           className={`${

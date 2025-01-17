@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = ({ childId, userId }) => {
+const Sidebar = ({ childId, userId , parentId  }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
 
@@ -93,7 +93,7 @@ const Sidebar = ({ childId, userId }) => {
 
       {/* Menu Items */}
       <List component="nav">
-        <ListItem button component={Link} to={`/dashboard/${childId}`}>
+      <ListItem button component={Link} to={`/dashboard/${parentId}/${childId}`}>
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
             <DashboardIcon
               sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
@@ -110,7 +110,8 @@ const Sidebar = ({ childId, userId }) => {
         <ListItem
           button
           component={Link}
-          to={`/dashboard/activity/activity/${childId}`}
+          to={`/dashboard/${parentId}/${childId}/activity`}
+
         >
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
             <SchoolIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
@@ -126,7 +127,8 @@ const Sidebar = ({ childId, userId }) => {
         <ListItem
           button
           component={Link}
-          to={`/dashboard/progress-tracking/progress-tracking/${childId}`}
+          to={`/dashboard/${parentId}/${childId}/progress-tracking`}
+
         >
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
             <BookIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
@@ -142,8 +144,8 @@ const Sidebar = ({ childId, userId }) => {
         <ListItem
           button
           component={Link}
-          to={`/dashboard/profilepage/profilepage/${childId}`}
-        >
+          to={`/dashboard/${parentId}/${childId}/profilepage`}
+          >
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
             <ReceiptIcon
               sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
@@ -175,7 +177,7 @@ const Sidebar = ({ childId, userId }) => {
         <ListItem
           button
           component={Link}
-          to={`/dashboard/help/help/${childId}`}
+          to={`/dashboard/${parentId}/${childId}/help`}
         >
           <ListItemIcon sx={{ minWidth: { xs: 0, sm: 40 } }}>
             <HelpOutlineIcon

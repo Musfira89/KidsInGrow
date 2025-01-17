@@ -2,14 +2,16 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProfileContext } from '../Context/ProfileContext';
+import { AuthContext } from '../Context/AuthContext'; // Import AuthContext
 import BgImage from '../assets/bg6.jpg';
 import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer and toast
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toastify
 
 
 const ChildForm = () => {
-    const navigate = useNavigate(); 
-    const { setProfile } = useContext(ProfileContext);
+    const navigate = useNavigate();
+    const { authData } = useContext(AuthContext); // Get authData from AuthContext
+    const { setProfile } = useContext(ProfileContext); // Ensure this context is set up correctly
 
     const [formData, setFormData] = useState({
         babyName: '',
@@ -30,8 +32,6 @@ const ChildForm = () => {
         assistingPeople: '',
     });
 
-    const [alertMessage, setAlertMessage] = useState('');
-
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -42,16 +42,28 @@ const ChildForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8082/api/submit', formData);
-            const { child_id } = response.data;
-            setProfile(response.data);  // Save the profile data in the context
+            const parentId = authData.parent_id || localStorage.getItem('parent_id');
+
+            if (!parentId) {
+                toast.error('Parent ID is missing. Please log in again.');
+                return;
+            }
+
+            const response = await axios.post('http://localhost:8082/api/submit', {
+                ...formData,
+                parent_id: parentId,
+            });
+
             toast.success('Child information saved successfully!');
-            navigate(`/dashboard/${child_id}`);  // Navigate to the dashboard based on child_id
+            navigate(`/chooseChild/${parentId}`);
         } catch (error) {
-            console.error('There was an error submitting the form!', error);
+            console.error(error);
             toast.error('Error saving child information. Please try again.');
         }
     };
+
+
+      
     return (
         <div className="relative min-h-screen bg-cover bg-center">
             <div className="absolute inset-0 opacity-50 bg-cover bg-center"style={{ backgroundImage: `url(${BgImage})` }}></div>
@@ -329,7 +341,7 @@ const ChildForm = () => {
                                     ></textarea>
                                 </div>
                                 {/* Submit Button */}
-                                <div className="w-full h-16 text-center justify-center bg-gradient-to-bl from-cyan-400 to-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
+                                <div className="w-full h-10 text-center justify-center bg-gradient-to-bl from-cyan-400 to-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
                                     <button type="submit">
                                         Create
                                     </button>

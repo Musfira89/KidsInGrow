@@ -18,7 +18,6 @@ export const getNotifications = (req, res) => {
     AND
       r.child_id = ?
   `;
-
   db.query(query, [childId], (error, results) => {
     if (error) {
       console.error('Error fetching notifications:', error);

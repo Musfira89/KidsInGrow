@@ -31,6 +31,15 @@ const Login = () => {
           navigate('/childform');
         }
         toast.success('Login successful!');
+
+        // Delay navigation by 1 second
+        setTimeout(() => {
+          if (child_id) {
+            navigate(`/chooseChild/${parent_id}`);
+          } else {
+            navigate('/childform');
+          }
+        }, 1000); // 1000 ms = 1 second
       } catch (err) {
         setErrors({ general: 'Invalid username or password' });
         toast.error('Invalid username or password');

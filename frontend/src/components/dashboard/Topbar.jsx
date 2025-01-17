@@ -26,7 +26,35 @@ const Topbar = () => {
   const [anchorElNotifications, setAnchorElNotifications] = useState(null);
   const [anchorElProfile, setAnchorElProfile] = useState(null);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8082/api/notifications/${childId}`
+      );
+
+      if (response.data.error) {
+        setNotifications([
+          { message: response.data.error, date: new Date().toLocaleString() },
+        ]);
+      } else {
+        setNotifications(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+      setNotifications([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchNotifications();
+    // Optional: Poll for new notifications every 10 seconds
+    const interval = setInterval(fetchNotifications, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   const fetchNotifications = async () => {
     try {
@@ -56,16 +84,16 @@ const Topbar = () => {
   }, []);
 
   const handleLogout = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
     <AppBar position="static" color="transparent" elevation={3}>
       <Toolbar
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          flexDirection: isMobile ? 'column' : 'row',
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: isMobile ? "column" : "row",
         }}
       >
         <Typography
@@ -84,9 +112,9 @@ const Topbar = () => {
 
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: isMobile ? 'column' : 'row',
+            display: "flex",
+            alignItems: "center",
+            flexDirection: isMobile ? "column" : "row",
           }}
         >
           <Tooltip title="Notifications">
@@ -160,7 +188,6 @@ const Topbar = () => {
               ))
             )}
           </Menu>
-
           <Tooltip title="Profile">
             <IconButton
               size="large"

@@ -14,7 +14,7 @@ import Confetti from 'react-confetti';
 Modal.setAppElement('#root');
 
 function MonthQuestions() {
-  const { month, category, childId } = useParams();
+  const { month, category, childId, parentId } = useParams();
   const [questions, setQuestions] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(parseInt(category));
   const [completedCategories, setCompletedCategories] = useState([]);
@@ -181,7 +181,7 @@ function MonthQuestions() {
       setFeedbackType('success');
       setShowFeedback(true);
       setTimeout(() => {
-        navigate(`/dashboard/${childId}`);
+        navigate(`/dashboard/${parentId}/${childId}`);
       }, 2000); // Adjust delay as needed
     } catch (error) {
       console.error('Error generating report:', error);

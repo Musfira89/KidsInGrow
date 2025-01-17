@@ -11,6 +11,8 @@ import graphRoutes from './routes/graphRoutes.js';
 import questionRoutes from './routes/questionRoutes.js';
 import dotenv from 'dotenv';
 import profileRoutes from './routes/profileRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
+
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';

@@ -4,11 +4,12 @@ import axios from "axios";
 import logo from "../../../../assets/logo.png";
 import bgImage from "../../../../assets/kidsbg.jpg";
 import DownloadIcon from "@mui/icons-material/Download";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"; // Import back arrow icon
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const ChildReport = () => {
-  const { childId } = useParams();
+  const { childId, parentId } = useParams();
   const navigate = useNavigate(); // useNavigate hook to programmatically navigate
   const yearMonths = {
     1: [
@@ -28,20 +29,9 @@ const ChildReport = () => {
       { month: 22 },
       { month: 24 },
     ],
-    3: [
-      { month: 27 },
-      { month: 30 },
-      { month: 33 },
-    ],
-    4: [
-      { month: 36 },
-      { month: 42 },
-    ],
-    5: [
-      { month: 48 },
-      { month: 54 },
-      { month: 60 },
-    ],
+    3: [{ month: 27 }, { month: 30 }, { month: 33 }],
+    4: [{ month: 36 }, { month: 42 }],
+    5: [{ month: 48 }, { month: 54 }, { month: 60 }],
   };
 
   const years = Object.keys(yearMonths).map(Number);
@@ -80,7 +70,7 @@ const ChildReport = () => {
 
   const handleViewReport = (month) => {
     // Navigate to the new route for viewing the report
-    navigate(`/view-report/${childId}/${month}`);
+    navigate(`/view-report/${parentId}/${childId}/${month}`);
   };
 
   return (
@@ -91,6 +81,12 @@ const ChildReport = () => {
       <div className="container mx-auto p-8">
         {/* Top Section */}
         <div className="absolute top-0 left-0 w-full bg-blue-950 bg-opacity-100 shadow-md p-4 z-10">
+        <button
+            onClick={() => navigate(-1)} // Go back to the previous page
+            className="text-white flex items-center"
+          >
+            <ArrowBackIcon className="mr-2" />
+          </button>
           <div className="flex justify-center items-center">
             <img src={logo} alt="Logo" className="h-12 mr-4" />
             <h1 className="text-4xl font-extrabold text-white text-center mb-2">
