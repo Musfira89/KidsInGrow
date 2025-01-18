@@ -1,3 +1,4 @@
+// validationSchema.js
 import * as Yup from 'yup';
 
 // Yup validation schema
@@ -14,4 +15,5 @@ export const ValidationSchema = Yup.object({
     .required('Password is required'),
 });
 
-
+// You can also add a default export if necessary
+// export default ValidationSchema;

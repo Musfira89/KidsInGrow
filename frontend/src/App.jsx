@@ -24,6 +24,7 @@ import UpdateActivity from './pages/Dashboard/UpdateActivity';
 import ChildPage from './UserLogin/ChildPage';
 
 
+
 function App() {
 
   return (
@@ -37,7 +38,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/childform" element={<ChildForm />} />
-            <Route path="/chooseChild/:parentId" element={<ChildPage />} /> {/* already added to this new route */}
+           
 
             {/* User Dashboard Routes */}
             <Route path="/dashboard/:parentId/:childId/*" element={<AppRoutes />} />

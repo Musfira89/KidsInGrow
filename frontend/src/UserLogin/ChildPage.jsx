@@ -5,11 +5,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import bgImage from "../assets/kidsbg.jpg";
 import logo from "../assets/logo.png";
-
+import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PeopleIcon from "@mui/icons-material/People";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const ChooseChild = () => {
   const { parentId } = useParams(); // Extract parentId from route params
@@ -40,6 +41,13 @@ const ChooseChild = () => {
   if (loading) {
     return <p>Loading children profiles...</p>; // Show loading state
   }
+  const handleLogout = () => {
+    toast.success("Logout successfully");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000); // Adjust time to match your toast duration or logic
+  };
+
 
   return (
     <div
@@ -51,13 +59,26 @@ const ChooseChild = () => {
 
       {/* Top Section */}
       <div className="absolute top-0 left-0 w-full bg-blue-950 bg-opacity-100 shadow-md p-4 z-10">
-        <div className="flex justify-center items-center">
-          <img src={logo} alt="Logo" className="h-12 mr-4" />
-          <h1 className="text-4xl font-extrabold text-white text-center mb-2">
-            Select a Child Profile
-          </h1>
+        <div className="flex justify-between items-center">
+          {/* Logo and Title */}
+          <div className="flex items-center">
+            <img src={logo} alt="Logo" className="h-12 mr-4" />
+            <h1 className="text-4xl font-extrabold text-white text-center">
+              Select a Child Profile
+            </h1>
+          </div>
+
+          {/* Log Out Button */}
+          <button
+            className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg text-sm sm:text-base flex items-center"
+            onClick={handleLogout}
+          >
+            <ExitToAppIcon className="text-white mr-2" style={{ fontSize: 20 }} />
+            Log Out
+          </button>
         </div>
       </div>
+
 
       {/* Profiles Container */}
       <div className="container mx-auto p-8 pt-32 relative z-10">
@@ -86,6 +107,10 @@ const ChooseChild = () => {
                     <div className="text-sm mt-1">
                       <PeopleIcon className="text-gray-400 mr-1" />
                       <span>Assisting People: {child.assistingPeople}</span>
+                    </div>
+                    <div className="text-sm mt-1">
+                      <PeopleIcon className="text-gray-400 mr-1" />
+                      <span>Parent Name: {child.parentName}</span>
                     </div>
                   </button>
                 </div>
